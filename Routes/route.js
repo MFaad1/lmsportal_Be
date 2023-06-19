@@ -6,6 +6,6 @@ router.get('/', (req, res)=>{
   res.send('this is response from server')
 })
 router.post('/signup',admin.signup )
-router.get('/login', admin.login)
+router.post('/login', admin.login)
 
 module.exports  = router
