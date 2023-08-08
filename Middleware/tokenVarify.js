@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const secKey = "seckey";
 
 const middle = (req, res, next) => {
+ 
     if (req.headers && req.headers.token) {
         try {
             const decoded = jwt.verify(req.headers.token, secKey);

@@ -1,11 +1,13 @@
 const express = require('express')
 
 const admin = require("../Controller/controller")
+const middle = require('../Middleware/tokenVarify')
 const router = express.Router()
-router.get('/', (req, res)=>{
-  res.send('this is response from server')
-})
+
 router.post('/signup',admin.signup )
 router.post('/login', admin.login)
+router.post('/emailVarify', admin.passwordReset)
+router.post('/:userId/:token', admin.token)
+router.post('/passwordReset',middle.middle, admin.passwordReset2)
 
 module.exports  = router
