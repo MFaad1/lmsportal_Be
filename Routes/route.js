@@ -7,7 +7,7 @@ const router = express.Router()
 router.post('/signup',admin.signup )
 router.post('/login', admin.login)
 router.post('/emailVarify', admin.passwordReset)
-router.post('/:userId/:token', admin.token)
+// router.post('/:userId/:token', admin.token)
 router.post('/passwordReset',middle.middle, admin.passwordReset2)
 
 module.exports  = router

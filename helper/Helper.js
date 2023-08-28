@@ -1,5 +1,5 @@
 const mognoose = require('mongoose')
-require("dotenv").config();
+require("dotenv").config(); 
 
 
 mognoose.set("strictQuery", true)

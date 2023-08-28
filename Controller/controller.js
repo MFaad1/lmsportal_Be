@@ -58,14 +58,16 @@ const login = (req, res) => {
 }
 
 const passwordReset=async (req, res) => {
+    console.log(req.body, "body")
     try {
         const schema = Joi.object({ email: Joi.string().email().required() });
         const { error } = schema.validate(req.body);
         if (error) return res.status(400).send(error.details[0].message);
 
         const user = await adminDb.findOne({ email: req.body.email });
-        if (!user)
+        if (!user){
             return res.status(400).send("user with given email doesn't exist");
+        }
         return res.status(200).json({
             message: "user found",
             user
@@ -79,11 +81,11 @@ const passwordReset=async (req, res) => {
 
 const passwordReset2=async (req, res) => {
     const token = req.headers.token
-    console.log(token, "asdflsdkf")
+
     try {
         console.log(req.email, "request email")
 
-        const user = await adminDb.findOne({ email: req.body.email });
+        const user = await adminDb.findOne({ email: req.email });
         if (!user){
             return res.status(400).send("user with given email doesn't exist");
         }
