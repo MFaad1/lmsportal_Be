@@ -1,4 +1,4 @@
-const { adminDb,validate} = require('../Model/model')
+const { adminDb,validate, CoursesDb} = require('../Model/model')
 const Token = require('../Model/model')
 let jwt = require('jsonwebtoken');
 let seckey = 'seckey'
@@ -128,6 +128,46 @@ const token =  async (req, res) => {
     }
 }
 
-module.exports = { signup, login, passwordReset, token, passwordReset2}
+const addCourse = async(req, res)=>{
+
+    try {
+        const course  = new CoursesDb (req.body)
+        await course.save()
+         
+    return res.status(200).json({
+        message: "Course has been enrolled",
+        course
+    })        
+    } catch (error) {
+        console.log(error.message, "error occured")
+    return res.status(500).json({
+        message: "Sever error "
+    })        
+    }
+    
+}
+
+const getCourses = async(req, res)=>{
+
+    try {
+        CoursesDb.find().then(response=>{
+            return res.status(200).json({
+                message: "Course has been enrolled",
+                course : response
+            })        
+        })     
+    } catch (error) {
+        console.log(error.message, "error occured")
+    return res.status(500).json({
+        message: "Sever error "
+    })        
+    }
+    
+}
+
+
+
+
+module.exports = { signup, login, passwordReset, token, passwordReset2, addCourse, getCourses}
 
 
