@@ -12,4 +12,5 @@ router.post('/passwordReset',middle.middle, admin.passwordReset2)
 router.post('/addCourse', admin.addCourse)
 router.get('/getCourses', admin.getCourses)
 
+
 module.exports  = router
