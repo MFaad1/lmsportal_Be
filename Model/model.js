@@ -16,7 +16,10 @@ email:{
 password:{
     type: String,
     require: true
-}
+},
+enrollCourse : [{
+  type: mongoose.Schema.Types.ObjectId,
+ref: 'Courses'}]
 })
 
 adminSchema.pre('save', function(next){
